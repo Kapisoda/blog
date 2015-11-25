@@ -3,7 +3,7 @@
 <p>glavni index The Ruby Racer is designed to let you evaluate JavaScript as safely as possible unless you tell it to do something more dangerous. The default context is a hermetically sealed JavaScript environment with only the standard JavaScript objects and functions. Nothing from the Ruby world is accessible at all.
 
   For Ruby objects that you explicitly embed into JavaScript, by default only the public methods below Object are exposed by default. E.g.</p>
-
+<% if user_signed_in? %>
 
 <% @post.each do |post| %>
 
@@ -13,4 +13,5 @@
   <p>Category: <%= link_to post.category.name, category_path(post.category.id) %> </p>
   <p><%= link_to "View details >>", post_path(post.id), :class => "btn btn-default" %></p>
 </div>
+<% end %>
 <% end %>

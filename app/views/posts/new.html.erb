@@ -1,5 +1,7 @@
 <h1>Add new post</h1>
 
+<% if user_signed_in? %>
+
 <%= semantic_form_for @post do |f| %>
     <%= f.inputs do %>
         <%= f.input :title %>
@@ -12,3 +14,6 @@
         <%= f.action :cancel, :as => :link %>
     <% end %>
 <% end %>
+
+<% end %>
+
