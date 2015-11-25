@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @title ? @title : 'Dobrodosli' %>/Blog</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+<header>
+  <div class = "container">
+    <h1>Blog <small><%= @title ? @title : 'Dobrodosli' %> <% if user_signed_in? == false %><%= link_to 'Sign in', new_user_session_path %> <% end %> <% if user_signed_in? %> <%= link_to 'new post', new_post_path %>  <%= link_to "Sign_out", destroy_user_session_path, :method => :delete %> <% end %></small></h1>
+
+  </div>
+</header>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+
+        </button>
+
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="<%= params[:controller]== 'about' ? 'active' : '' %>" > <%= link_to 'Blog', root_path %> </li>
+          <li class="<%= params[:controller]== 'posts' && params[:action] == 'index' ? 'active' : '' %>"> <%= link_to 'Posts', posts_path %></li>
+          <li class="<%= params[:controller]== 'categories' && params[:action] == 'index' ? 'active' : '' %>" > <%= link_to 'Categories', categories_path %></li>
+          <li class="<%= params[:controller]== 'posts' && params[:action] == 'new' ? 'active' : '' %>" > <% if user_signed_in? %> <%= link_to 'New Post', posts_new_path %> <% end %></li>
+          <li class="<%= params[:controller]== 'categories' && params[:action] == 'new' ? 'active' : '' %>" ><% if user_signed_in? %><%= link_to 'New Category', categories_new_path %> <% end %></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+
+
+
+<section>
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-md-10" style="background-color:lavender;">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
+      <div class = "col-md-2" style="background-color:lightcyan;">
+        <%= render 'partials/sidebar' %>
+      </div>
+    </div>
+  </div>
+
+
+
+</section>
+
+</body>
+
+<footer class = "futer">
+  <div class = "container">
+    <div class="row" style="background-color:lavenderblush;">
+      <p>Copyright to &copy; JEDI GOVNA d.o.o. 2015, All Rights Reserved</p>
+    </div>
+  </div>
+</footer>
+
+</html>

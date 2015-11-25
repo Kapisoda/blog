@@ -1,0 +1,12 @@
+<h1>Postovi</h1>
+
+
+<% @post.each do |post| %>
+
+    <div class="col-md-4">
+      <h2><%= post.title %></h2>
+      <p>User: <%= link_to post.user.name, user_path(post.user.id) %> </p>
+      <p>Category: <%= link_to post.category.name, category_path(post.category.id) %> </p>
+      <p><%= link_to "View details >>", post_path(post.id), :class => "btn btn-default" %></p>
+    </div>
+<% end %>
